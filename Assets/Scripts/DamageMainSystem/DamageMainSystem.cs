@@ -9,7 +9,9 @@ using Unity.Entities;
 using Unity.Entities.Content;
 using Unity.Jobs;
 using Unity.Mathematics;
+using Unity.Rendering;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace DamageProxySystem
 {
@@ -31,55 +33,56 @@ namespace DamageProxySystem
         public void OnUpdate(ref SystemState state)
         {
             var config = SystemAPI.GetSingleton<ConfigData>();
-
-            var elapsedTime = (float) SystemAPI.Time.ElapsedTime;
-            // var ecb = new EntityCommandBuffer(Allocator.Temp);
-            // // 1. Add text glyphs to the entities who doesn't have them yet
-            // foreach (var (request, localTransform, entity) 
-            //          in SystemAPI.Query<RefRO<DamageRequest>, RefRO<LocalTransform>>().WithNone<DamageBubble>().WithEntityAccess().AsParallel())
-            // {
-            //     var bubble = ecb.Instantiate(config.DamageBubble);
-            //     ecb.SetComponent(bubble, new LocalTransform()
-            //     {
-            //         Position = localTransform.ValueRO.Position, Rotation = quaternion.identity, Scale = 1
-            //     });
-            //     ecb.AddComponent(bubble, new DamageBubble() { SpawnTime = elapsedTime});
-            // }
-            // ecb.Playback(EntityManager);
-            
+            var elapsedTime = (float)SystemAPI.Time.ElapsedTime;
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 
             new ApplyGlyphsJob()
             {
-                ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
+                Ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 ElapsedTime = elapsedTime,
-                glyphEntity = config.DamageBubble
+                GlyphEntity = config.DamageBubble
             }.ScheduleParallel();
         }
-        
-        
+
+
         [BurstCompile]
         [WithNone(typeof(DamageBubble))]
         public partial struct ApplyGlyphsJob : IJobEntity
         {
-            public EntityCommandBuffer.ParallelWriter ecb;
-            public Entity glyphEntity;
-            public float ElapsedTime;            
-            
-            
-            public void Execute([ChunkIndexInQuery] int chunkIndex, in DamageRequest damageRequest, in LocalTransform localTransform)
+            public EntityCommandBuffer.ParallelWriter Ecb;
+            public Entity GlyphEntity;
+            public float ElapsedTime;
+            private const float GLYPH_WIDTH = 1f;
+
+            public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in DamageRequest damageRequest)
             {
-                var request = damageRequest.Value;
+                var number = damageRequest.Value;
                 // split to numbers
-                            
+                var offset = math.log10(number) / 2f * GLYPH_WIDTH;
+
                 
                 
-                var bubble = ecb.Instantiate(chunkIndex, glyphEntity);
-                ecb.SetComponent(chunkIndex, bubble, new LocalTransform()
+                // we iterate from  rightmost digit to leftmost
+                while (number > 0)
                 {
-                    Position = localTransform.Position, Rotation = quaternion.identity, Scale = 1
-                });
-                ecb.AddComponent(chunkIndex, bubble, new DamageBubble() { SpawnTime = ElapsedTime});
+                    var digit = number % 10;
+                    number /= 10;
+
+
+                    var glyph = Ecb.Instantiate(chunkIndex, GlyphEntity);
+                    Ecb.SetComponent(chunkIndex, glyph, new GlyphIdFloatOverride(){Value = digit});
+                    Ecb.AddComponent(chunkIndex, glyph, new Parent(){Value = entity});
+                    Ecb.SetComponent(chunkIndex, glyph, new LocalTransform()
+                    {
+                        Position = new float3(offset, 0, 0), 
+                        Rotation = quaternion.identity, 
+                        Scale = 1
+                    });
+                    offset-= GLYPH_WIDTH;
+                }
+                
+                Ecb.AddComponent(chunkIndex, entity, new DamageBubble() { SpawnTime = ElapsedTime });
+                Ecb.RemoveComponent<DamageRequest>(chunkIndex, entity );
             }
         }
     }

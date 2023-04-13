@@ -1,9 +1,11 @@
-﻿using Unity.Burst;
+﻿using DamageProxySystem;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
 namespace DamageInfo
 {
+    [UpdateAfter(typeof(DamageMainSystem))]
     public partial struct DamageBubbleMovementSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -30,7 +32,6 @@ namespace DamageInfo
             public float ElapsedTime;
             public float DeltaTime;
             public EntityCommandBuffer.ParallelWriter ECBWriter;
-
 
             private void Execute(Entity entity, [ChunkIndexInQuery] int chunkIndex, ref LocalTransform transform,
                 in DamageBubble bubble)

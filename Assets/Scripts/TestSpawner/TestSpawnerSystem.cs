@@ -10,20 +10,30 @@ namespace TestSpawner
 {
     public partial class TestSpawnerSystem : SystemBase
     {
+        Random _rnd;
+
+        protected override void OnCreate()
+        {
+            _rnd = new Random((uint)SystemAPI.Time.GetHashCode());
+        }
+
         protected override void OnUpdate()
         {
             float3 min = new float3(-15, 0, -15);
             float3 max = new float3(15, 0, 15);
-            var rnd = new Random((uint)SystemAPI.Time.GetHashCode());
+
+            if ((int)(SystemAPI.Time.ElapsedTime) % 3 != 0) return;
+
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var transform in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<TestSpawner>())
             {
                 var entity = ecb.CreateEntity();
-                ecb.AddComponent(entity, new DamageRequest { Value = rnd.NextInt(1, 999999) });
+                
+                ecb.AddComponent(entity, new DamageRequest { Value = _rnd.NextInt(1, 999999) });
 
                 ecb.AddComponent(entity, new LocalTransform
                 {
-                    Scale = 1, Position = rnd.NextFloat3(min, max), Rotation = Quaternion.identity
+                    Scale = 1, Position = _rnd.NextFloat3(min, max), Rotation = Quaternion.identity
                 });
             }
 
