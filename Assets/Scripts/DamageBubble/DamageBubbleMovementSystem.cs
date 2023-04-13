@@ -1,23 +1,46 @@
-﻿using Unity.Collections;
+﻿using Unity.Burst;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace DamageInfo
 {
-    public partial class DamageBubbleMovementSystem : SystemBase
+    public partial struct DamageBubbleMovementSystem : ISystem
     {
-        protected override void OnUpdate()
+        public void OnCreate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
-            foreach (var (bubble, transform, entity)
-                     in SystemAPI.Query<RefRW<DamageBubble>, RefRW<LocalTransform>>().WithEntityAccess())
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+
+            new MoveJob
             {
-                transform.ValueRW.Position += SystemAPI.Time.DeltaTime * math.up();
-                bubble.ValueRW.LifeTime += SystemAPI.Time.DeltaTime; // TODO: move this to singleton config
-                if (bubble.ValueRO.LifeTime > 1.5f) ecb.DestroyEntity(entity);
+                ElapsedTime = (float)SystemAPI.Time.ElapsedTime,
+                DeltaTime = SystemAPI.Time.DeltaTime,
+                ECBWriter = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
+            }.ScheduleParallel();
+        }
+
+        [BurstCompile]
+        public partial struct MoveJob : IJobEntity
+        {
+            public float ElapsedTime;
+            public float DeltaTime;
+            public EntityCommandBuffer.ParallelWriter ECBWriter;
+
+
+            private void Execute(Entity entity, [ChunkIndexInQuery] int chunkIndex, ref LocalTransform transform,
+                in DamageBubble bubble)
+            {
+                var timeAlive = ElapsedTime - bubble.SpawnTime;
+                if (timeAlive > 1.5) ECBWriter.DestroyEntity(chunkIndex, entity);
+
+                transform.Position.y += DeltaTime;
+                transform.Position.z += DeltaTime / 100;
             }
-            ecb.Playback(EntityManager);
         }
     }
 }

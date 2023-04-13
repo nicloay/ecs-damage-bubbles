@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.956173B0" = "text"
+	"last_search.956173B0" = "graphic"
 	"OpenInspectorPreview.956173B0" = "0"
 	"currentGroup.956173B0" = "all"
 }
@@ -67,6 +67,12 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"и"
+	"s"
+	"g"
+	"O"
+	"ma"
+	"o"
 ]
 searchItemFavorites = [
 ]

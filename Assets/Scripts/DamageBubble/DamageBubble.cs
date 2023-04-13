@@ -4,6 +4,6 @@ namespace DamageInfo
 {
     public struct DamageBubble : IComponentData
     {
-        public float LifeTime;
+        public float SpawnTime;
     }
 }
