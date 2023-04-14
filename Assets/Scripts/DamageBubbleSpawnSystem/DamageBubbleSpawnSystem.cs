@@ -6,7 +6,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace DamageProxySystem
 {
@@ -57,7 +56,7 @@ namespace DamageProxySystem
                 var glyphTransform = transform;
                 var offset = math.log10(number) / 2f * GlyphWidth;
                 glyphTransform.Position.x += offset;
-                
+
                 // split to numbers
                 // we iterate from  rightmost digit to leftmost
                 while (number > 0)
