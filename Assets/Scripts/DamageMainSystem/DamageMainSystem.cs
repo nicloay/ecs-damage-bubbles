@@ -47,7 +47,7 @@ namespace DamageProxySystem
             public EntityCommandBuffer.ParallelWriter Ecb;
             public Entity GlyphEntity;
             public float ElapsedTime;
-            private const float GLYPH_WIDTH = 1f;
+            private const float GLYPH_WIDTH = 0.07f;
 
             public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in LocalTransform transform, in DamageRequest damageRequest)
             {

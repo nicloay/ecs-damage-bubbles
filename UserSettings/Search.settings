@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.956173B0" = "graphic"
+	"last_search.956173B0" = "mesh"
 	"OpenInspectorPreview.956173B0" = "0"
 	"currentGroup.956173B0" = "all"
 }
@@ -67,6 +67,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"me"
 	"и"
 	"s"
 	"g"
