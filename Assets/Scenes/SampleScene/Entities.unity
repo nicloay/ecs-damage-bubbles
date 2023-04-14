@@ -153,6 +153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glyphPrefab: {fileID: 5797547164850935345, guid: bf72be9ed2a24b34594bda415a0e13ca, type: 3}
+  verticalOffset: 2
+  movementTime: 2
+  scaleOffset: 0.5
+  glyphZOffset: 0.001
+  glyphWidth: 0.07
 --- !u!4 &1154727876
 Transform:
   m_ObjectHideFlags: 0

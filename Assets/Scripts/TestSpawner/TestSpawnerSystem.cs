@@ -10,7 +10,7 @@ namespace TestSpawner
 {
     public partial class TestSpawnerSystem : SystemBase
     {
-        Random _rnd;
+        private Random _rnd;
 
         protected override void OnCreate()
         {
@@ -19,8 +19,8 @@ namespace TestSpawner
 
         protected override void OnUpdate()
         {
-            float3 min = new float3(-15, 0, -5);
-            float3 max = new float3(15, 0, 5);
+            var min = new float3(-15, 0, -5);
+            var max = new float3(15, 0, 5);
 
             //if ((int)(SystemAPI.Time.ElapsedTime) % 3 != 0) return;
 
@@ -28,8 +28,8 @@ namespace TestSpawner
             foreach (var transform in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<TestSpawner>())
             {
                 var entity = ecb.CreateEntity();
-                
-                ecb.AddComponent(entity, new DamageRequest { Value = _rnd.NextInt(1, 999999) });
+
+                ecb.AddComponent(entity, new DamageRequest { Value = _rnd.NextInt(1, 9) });
 
                 ecb.AddComponent(entity, new LocalTransform
                 {
