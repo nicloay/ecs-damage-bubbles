@@ -1,17 +1,11 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using Config;
+﻿using Config;
 using Damage;
 using DamageInfo;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Entities.Content;
-using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace DamageProxySystem
 {
@@ -59,8 +53,6 @@ namespace DamageProxySystem
                 var number = damageRequest.Value;
                 // split to numbers
                 var offset = math.log10(number) / 2f * GLYPH_WIDTH;
-
-                
                 
                 // we iterate from  rightmost digit to leftmost
                 while (number > 0)
@@ -70,8 +62,8 @@ namespace DamageProxySystem
 
 
                     var glyph = Ecb.Instantiate(chunkIndex, GlyphEntity);
+                    Ecb.AddComponent(chunkIndex, glyph, new Parent(){ Value = entity});
                     Ecb.SetComponent(chunkIndex, glyph, new GlyphIdFloatOverride(){Value = digit});
-                    Ecb.AddComponent(chunkIndex, glyph, new Parent(){Value = entity});
                     Ecb.SetComponent(chunkIndex, glyph, new LocalTransform()
                     {
                         Position = new float3(offset, 0, 0), 
