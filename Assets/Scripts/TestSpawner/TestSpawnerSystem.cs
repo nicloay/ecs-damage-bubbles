@@ -19,10 +19,10 @@ namespace TestSpawner
 
         protected override void OnUpdate()
         {
-            float3 min = new float3(-15, 0, -15);
-            float3 max = new float3(15, 0, 15);
+            float3 min = new float3(-15, 0, -5);
+            float3 max = new float3(15, 0, 5);
 
-            if ((int)(SystemAPI.Time.ElapsedTime) % 3 != 0) return;
+            //if ((int)(SystemAPI.Time.ElapsedTime) % 3 != 0) return;
 
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var transform in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<TestSpawner>())

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 716744979}
   - component: {fileID: 716744978}
   - component: {fileID: 716744981}
+  - component: {fileID: 716744982}
   m_Layer: 0
   m_Name: Glyph
   m_TagString: Untagged
@@ -235,6 +236,18 @@ MonoBehaviour:
     type: 2
     value: {x: 4, y: 0, z: 0, w: 0}
     instanceOverride: 0
+--- !u!114 &716744982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716744976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b9796e75fb4669b2335226d4c91df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154727874
 GameObject:
   m_ObjectHideFlags: 0

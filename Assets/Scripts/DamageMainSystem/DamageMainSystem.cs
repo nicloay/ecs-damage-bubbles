@@ -6,6 +6,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace DamageProxySystem
 {
@@ -48,11 +49,13 @@ namespace DamageProxySystem
             public float ElapsedTime;
             private const float GLYPH_WIDTH = 1f;
 
-            public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in DamageRequest damageRequest)
+            public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in LocalTransform transform, in DamageRequest damageRequest)
             {
                 var number = damageRequest.Value;
                 // split to numbers
                 var offset = math.log10(number) / 2f * GLYPH_WIDTH;
+                var t = transform;
+                t.Position.x += offset;
                 
                 // we iterate from  rightmost digit to leftmost
                 while (number > 0)
@@ -62,19 +65,16 @@ namespace DamageProxySystem
 
 
                     var glyph = Ecb.Instantiate(chunkIndex, GlyphEntity);
-                    Ecb.AddComponent(chunkIndex, glyph, new Parent(){ Value = entity});
+                    
+                    //Ecb.AddComponent(chunkIndex, glyph, new Parent(){ Value = entity});
                     Ecb.SetComponent(chunkIndex, glyph, new GlyphIdFloatOverride(){Value = digit});
-                    Ecb.SetComponent(chunkIndex, glyph, new LocalTransform()
-                    {
-                        Position = new float3(offset, 0, 0), 
-                        Rotation = quaternion.identity, 
-                        Scale = 1
-                    });
+                    Ecb.SetComponent(chunkIndex, glyph, t);
+                    t.Position.x -= GLYPH_WIDTH;
+                    Ecb.AddComponent(chunkIndex, glyph, new DamageBubble() { SpawnTime = ElapsedTime });
                     offset-= GLYPH_WIDTH;
                 }
                 
-                Ecb.AddComponent(chunkIndex, entity, new DamageBubble() { SpawnTime = ElapsedTime });
-                Ecb.RemoveComponent<DamageRequest>(chunkIndex, entity );
+                Ecb.DestroyEntity(chunkIndex, entity);
             }
         }
     }
