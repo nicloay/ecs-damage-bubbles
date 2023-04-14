@@ -18,7 +18,7 @@ namespace DamageProxySystem
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<ConfigData>();
         }
 
@@ -27,7 +27,7 @@ namespace DamageProxySystem
         {
             var config = SystemAPI.GetSingleton<ConfigData>();
             var elapsedTime = (float)SystemAPI.Time.ElapsedTime;
-            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
 
             new ApplyGlyphsJob
             {
@@ -55,16 +55,9 @@ namespace DamageProxySystem
             {
                 var number = damageRequest.Value;
                 var glyphTransform = transform;
-                if (number > 9)
-                {
-                    var offset = math.log10(number) / 2f * GlyphWidth;
-                    glyphTransform.Position.x += offset;
-                }
-                else
-                {
-                    Debug.Log(number);
-                }
-
+                var offset = math.log10(number) / 2f * GlyphWidth;
+                glyphTransform.Position.x += offset;
+                
                 // split to numbers
                 // we iterate from  rightmost digit to leftmost
                 while (number > 0)

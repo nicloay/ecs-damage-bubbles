@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glyphPrefab: {fileID: 5797547164850935345, guid: bf72be9ed2a24b34594bda415a0e13ca, type: 3}
   verticalOffset: 2
-  movementTime: 2
-  scaleOffset: 0.5
+  movementTime: 1
+  scaleOffset: 1
   glyphZOffset: 0.001
   glyphWidth: 0.07
 --- !u!4 &1154727876
@@ -202,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bbc6a0d89e49df964cdf4f13916a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPosition: {x: -5, y: 0, z: -5}
+  maxPosition: {x: 5, y: 0, z: 5}
+  entitiesPerFrame: 4
 --- !u!4 &1543248849
 Transform:
   m_ObjectHideFlags: 0

@@ -19,22 +19,21 @@ namespace TestSpawner
 
         protected override void OnUpdate()
         {
-            var min = new float3(-15, 0, -5);
-            var max = new float3(15, 0, 5);
-
-            //if ((int)(SystemAPI.Time.ElapsedTime) % 3 != 0) return;
-
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            foreach (var transform in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<TestSpawner>())
+            foreach (var spawner in SystemAPI.Query<TestSpawner>())
             {
-                var entity = ecb.CreateEntity();
-
-                ecb.AddComponent(entity, new DamageRequest { Value = _rnd.NextInt(1, 9) });
-
-                ecb.AddComponent(entity, new LocalTransform
+                var entities = spawner.EntitiesPerFrame;
+                while (entities-- > 0)
                 {
-                    Scale = 1, Position = _rnd.NextFloat3(min, max), Rotation = Quaternion.identity
-                });
+                    var entity = ecb.CreateEntity();
+                    ecb.AddComponent(entity, new DamageRequest { Value = _rnd.NextInt(1, 999999) });
+
+                    ecb.AddComponent(entity, new LocalTransform
+                    {
+                        Scale = 1, Position = _rnd.NextFloat3(spawner.MinPosition, spawner.MaxPosition), Rotation = Quaternion.identity
+                    });
+                }
+                
             }
 
             ecb.Playback(EntityManager);
