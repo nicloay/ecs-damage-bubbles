@@ -35,7 +35,7 @@ namespace DamageProxySystem
             {
                 Ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 ElapsedTime = elapsedTime,
-                GlyphEntity = config.DamageBubble
+                GlyphEntity = config.GlyphPrefab
             }.ScheduleParallel();
         }
 

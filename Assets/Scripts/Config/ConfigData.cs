@@ -4,6 +4,6 @@ namespace Config
 {
     public struct ConfigData : IComponentData
     {
-        public Entity DamageBubble;
+        public Entity GlyphPrefab;
     }
 }

@@ -37,7 +37,7 @@ namespace DamageInfo
                 in DamageBubble bubble)
             {
                 var timeAlive = ElapsedTime - bubble.SpawnTime;
-                if (timeAlive > 1.5) ECBWriter.DestroyEntity(chunkIndex, entity);
+                if (timeAlive > 5) ECBWriter.DestroyEntity(chunkIndex, entity);
 
                 transform.Position.y += DeltaTime;
                 transform.Position.z += DeltaTime / 100;
