@@ -5,22 +5,32 @@
 
 Installation
 -------------
-Prerequisities:
+Prerequisites:
 * Unity 2022.2
 * URP render pipeline
 
-1. open manifest.json and add following dependency to the project
+1. Install the package in one of the following ways:
+   1. Open `manifest.json` and add the following dependency to your project:
    
-   ```"com.mycompany.mypackage": "https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles```
-2. From the PackageManager windows import Demo sample
+      ```"com.mycompany.mypackage": "https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles```
+   2. Alternatively, install from the Git URL in the Package Manager. Copy the following link:
+      
+      ```https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles```
+
+      Then, paste it into the Package Manager's "Add package from git URL" field.
+     
+      ![image](https://github.com/nicloay/ecs-damage-bubbles/assets/1671030/b5993256-a595-4167-ac8b-2829f0ee10c2)
+2. Import the demo sample from the Package Manager window.
 
    ![image](https://github.com/nicloay/ecs-damage-bubbles/assets/1671030/02719c12-8e5d-4387-81f1-a07f374fdd34)
-3. Open SampleScene. It does all required systems and configurations
+3. Open the SampleScene to access the demo project with all required systems and configurations.
 
-Setup existing scene
+Setup Existing Scene
 -------------------
-1. Search for **DamageBubblesConfig** prefab in the packages, and drag and drop it to your Entities scene
-2. Create Entities and add following components to spawn damage bubbles in your systems
+To set up damage bubbles in your existing scene, follow these steps:
+
+1. Search for the `DamageBubblesConfig` prefab in the package and drag and drop it into your Entities scene.
+2. Create entities and add the following components to spawn damage bubbles in your systems:
    
 ```csharp
 var entity = EntityManager.CreateEntity()
