@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace TestSpawner
+namespace EcsDamageBubbles.Demo
 {
     public class TestSpawnerAuthoring : MonoBehaviour
     {
@@ -13,7 +13,8 @@ namespace TestSpawner
         {
             public override void Bake(TestSpawnerAuthoring authoring)
             {
-                AddComponent(new TestSpawner()
+                var entity = GetEntity(TransformUsageFlags.None);
+                AddComponent(entity, new TestSpawner()
                 {
                     MaxPosition = authoring.maxPosition,
                     MinPosition = authoring.minPosition,

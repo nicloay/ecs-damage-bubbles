@@ -1,13 +1,11 @@
-﻿using Config;
-using Damage;
+﻿using EcsDamageBubbles.Config;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-namespace TestSpawner
+namespace EcsDamageBubbles.Demo
 {
     public partial class TestSpawnerSystem : SystemBase
     {
@@ -39,7 +37,7 @@ namespace TestSpawner
                     ecb.AddComponent(entity, new DamageRequest
                     {
                         Value = _rnd.NextInt(1, 999999),
-                        Color = colorConfig[colorId].Color
+                        ColorId = colorId
                     });
 
                     ecb.AddComponent(entity, new LocalTransform

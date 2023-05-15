@@ -3,11 +3,12 @@ using UnityEditor;
 
 public class SyncDemoFolder
 {
+    const string SRC_FOLDER = @"Assets/Demo";
+    const string TARGET_FOLDER = @"Assets/EcsDamageBubbles/Samples~/Demo";
+    
     [MenuItem("Window/SyncDemoFolder")]
     public static void SyncDemoFolderRecursively()
     {
-        const string SRC_FOLDER = @"Assets/Demo";
-        const string TARGET_FOLDER = @"Assets/EcsDamageBubbles/Samples~";
 
         if (Directory.Exists(TARGET_FOLDER + "/Demo")) Directory.Delete(TARGET_FOLDER, true);
 
