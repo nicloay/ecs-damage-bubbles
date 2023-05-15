@@ -16,4 +16,4 @@ jobs:
       - name: Compare folders
         id: compare
         run: |
-          sh .github/scripts/compare_folders.sh
+          sh .github/scripts/compare-folders.sh
