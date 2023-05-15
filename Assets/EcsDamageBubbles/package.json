@@ -1,0 +1,33 @@
+﻿{
+  "name": "com.nicloay.EcsDamageBubbles",
+  "version": "1.0.0",
+  "displayName": "EcsDamageBubbles",
+  "description": "Damage Bubble Spawner with Animated Hit Points",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://example.com/",
+  "licensesUrl": "https://example.com/licensing.html",
+  "dependencies": {
+    "com.[company-name].some-package": "1.0.0",
+    "com.[company-name].other-package": "2.0.0"
+  },
+  "keywords": [
+    "Entities",
+    "ecs",
+    "burst"
+  ],
+  "author": {
+    "name": "Unity",
+    "email": "unity@example.com",
+    "url": "https://www.unity3d.com"
+  },
+  
+  
+  "samples": [
+    {
+      "displayName": "Demo scene",
+      "description": "Demonstrate how to spawn multiple bubbles in 3 different colors",
+      "path": "Samples~/SamplesHDRP"
+    }
+  ]
+}
