@@ -1,4 +1,5 @@
-﻿
+#!/bin/sh
+
 # Specify the folders to compare
 FOLDER1="Assets/Demo"
 FOLDER2="Assets/EcsDamageBubbles/Samples~/Demo"
