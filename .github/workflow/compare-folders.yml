@@ -16,3 +16,14 @@ jobs:
       - name: Compare folders
         run: |
           sh .github/scripts/compare_folders.sh
+
+      - name: Set status check
+        run: |
+          echo "::set-output name=status::$(sh .github/scripts/compare_folders.sh ${{ github.event.pull_request.head.ref }})"
+
+      - name: Report status check
+        uses: einaregilsson/github-status-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          state: ${{ job.outputs.status }}
+          context: Compare Folders

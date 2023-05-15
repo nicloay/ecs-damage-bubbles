@@ -1,8 +1,8 @@
 ﻿#!/bin/bash
 
 # Specify the folders to compare
-FOLDER1="path/to/folder1"
-FOLDER2="path/to/folder2"
+FOLDER1="Assets/Demo"
+FOLDER2="Assets/EcsDamageBubbles/Samples~/Demo"
 
 # Compare folders using diff command
 DIFF_OUTPUT=$(diff -rq $FOLDER1 $FOLDER2)
