@@ -1,7 +1,7 @@
 ﻿{
-  "name": "com.nicloay.EcsDamageBubbles",
+  "name": "com.nicloay.ecsdamagebubbles",
   "version": "1.0.0",
-  "displayName": "EcsDamageBubbles",
+  "displayName": "Ecs Damage Bubbles",
   "description": "Damage Bubble Spawner with Animated Hit Points",
   "unity": "2022.3",
   "unityRelease": "0f1",
