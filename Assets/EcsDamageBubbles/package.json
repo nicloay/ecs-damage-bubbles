@@ -23,7 +23,7 @@
     {
       "displayName": "Demo scene",
       "description": "Demonstrate how to spawn multiple bubbles in 3 different colors",
-      "path": "Samples~/SamplesHDRP"
+      "path": "Samples~/Demo"
     }
   ]
 }
