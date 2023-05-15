@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace TestSpawner
+namespace EcsDamageBubbles.Demo
 {
     public struct TestSpawner : IComponentData
     {

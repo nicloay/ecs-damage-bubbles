@@ -1,7 +1,7 @@
 using Unity.Entities;
 using Unity.Rendering;
 
-namespace Config
+namespace EcsDamageBubbles.Config
 {
     [MaterialProperty("_GlyphId")]
     internal struct GlyphIdFloatOverride : IComponentData

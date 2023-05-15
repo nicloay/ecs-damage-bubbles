@@ -1,12 +1,11 @@
-﻿using Config;
-using Damage;
+﻿using EcsDamageBubbles.Config;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-namespace TestSpawner
+namespace EcsDamageBubbles.Demo
 {
     public partial class TestSpawnerSystem : SystemBase
     {

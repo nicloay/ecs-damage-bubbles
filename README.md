@@ -19,4 +19,14 @@ Prerequisities:
 
 Setup existing scene
 -------------------
-1. 
+1. Search for **DamageBubblesConfig** prefab in the packages, and drag and drop it to your Entities scene
+2. Create Entities and add following components to spawn damage bubbles in your systems
+   
+```csharp
+var entity = EntityManager.CreateEntity()
+EntityManager.AddComponent(entity, new DamageRequest
+{
+   Value = _rnd.NextInt(1, 999999),
+   ColorId = colorId
+});
+```

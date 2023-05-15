@@ -1,0 +1,19 @@
+﻿name: Compare Folders
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  compare_folders:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Compare folders
+        id: compare
+        run: |
+          sh .github/scripts/compare-folders.sh
