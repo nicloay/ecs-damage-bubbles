@@ -12,7 +12,7 @@ Prerequisites:
 1. Install the package in one of the following ways:
    1. Open `manifest.json` and add the following dependency to your project:
    
-      ```"com.nicloay.ecsdamagebubbles": "https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles```
+      ```"com.nicloay.ecsdamagebubbles": "https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles"```
    2. Alternatively, install from the Git URL in the Package Manager. Copy the following link:
       
       ```https://github.com/nicloay/ecs-damage-bubbles.git?path=/Assets/EcsDamageBubbles```
