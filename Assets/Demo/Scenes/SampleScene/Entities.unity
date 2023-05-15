@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPosition: {x: -5, y: 0, z: -5}
   maxPosition: {x: 5, y: 0, z: 5}
-  entitiesPerFrame: 4
+  entitiesPerFrame: -135
 --- !u!4 &1543248849
 Transform:
   m_ObjectHideFlags: 0
@@ -221,58 +221,6 @@ PrefabInstance:
     - target: {fileID: 3009428095242683729, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[0].b
-      value: 0.9040659
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[0].g
-      value: 0.9433962
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[0].r
-      value: 0.6176575
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[1].b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[1].g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[1].r
-      value: 0.09708691
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[2].b
-      value: 0.1688501
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[2].g
-      value: 0.26723096
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[2].r
-      value: 0.8773585
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[3].a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[3].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7502903145657781041, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
-      propertyPath: damageColors.Array.data[3].g
-      value: 0.09432411
       objectReference: {fileID: 0}
     - target: {fileID: 8895197579572304538, guid: b83986c920c7f4f4f91e16b6d37a55f7, type: 3}
       propertyPath: m_Name

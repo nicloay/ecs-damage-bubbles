@@ -38,7 +38,7 @@ namespace TestSpawner
                     ecb.AddComponent(entity, new DamageRequest
                     {
                         Value = _rnd.NextInt(1, 999999),
-                        Color = colorConfig[colorId].Color
+                        ColorId = colorId
                     });
 
                     ecb.AddComponent(entity, new LocalTransform

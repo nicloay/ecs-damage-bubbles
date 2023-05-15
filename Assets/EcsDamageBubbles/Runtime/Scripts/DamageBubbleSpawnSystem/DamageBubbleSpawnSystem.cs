@@ -1,10 +1,11 @@
-﻿using Config;
+﻿using System.Linq;
+using Config;
 using Damage;
 using DamageInfo;
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Rendering;
 using Unity.Transforms;
 
 namespace DamageProxySystem
@@ -14,17 +15,36 @@ namespace DamageProxySystem
     /// </summary>
     public partial struct DamageBubbleSpawnSystem : ISystem
     {
+        private NativeArray<float4> _colorConfig;
+        
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<DamageBubblesConfig>();
+            state.RequireForUpdate<DamageBubbleColorConfig>();
+        }
+
+        public void OnDestroy(ref SystemState state)
+        {
+            _colorConfig.Dispose();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            if (_colorConfig == default)
+            {
+                var damageColorConfig = SystemAPI.GetSingletonBuffer<DamageBubbleColorConfig>(true);
+                _colorConfig = new NativeArray<float4>(damageColorConfig.Length, Allocator.Persistent);
+                for (int i = 0; i < _colorConfig.Length; i++)
+                {
+                    _colorConfig[i] = damageColorConfig[i].Color;
+                }
+            }
+
             var config = SystemAPI.GetSingleton<DamageBubblesConfig>();
+            
             var elapsedTime = (float)SystemAPI.Time.ElapsedTime;
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
 
@@ -32,6 +52,7 @@ namespace DamageProxySystem
             {
                 Ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 ElapsedTime = elapsedTime,
+                ColorConfig = _colorConfig,
                 GlyphEntity = config.GlyphPrefab,
                 GlyphZOffset = config.GlyphZOffset,
                 GlyphWidth = config.GlyphWidth
@@ -44,16 +65,17 @@ namespace DamageProxySystem
         public partial struct ApplyGlyphsJob : IJobEntity
         {
             public EntityCommandBuffer.ParallelWriter Ecb;
-            public Entity GlyphEntity;
-            public float ElapsedTime;
-            public float GlyphZOffset;
-            public float GlyphWidth;
+            [ReadOnly] public Entity GlyphEntity;
+            [ReadOnly] public float ElapsedTime;
+            [ReadOnly] public float GlyphZOffset;
+            [ReadOnly] public float GlyphWidth;
+            [ReadOnly] public NativeArray<float4> ColorConfig;
 
             public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in LocalTransform transform,
                 in DamageRequest damageRequest)
             {
                 var number = damageRequest.Value;
-                var color = damageRequest.Color;
+                var color = ColorConfig[damageRequest.ColorId];
                 var glyphTransform = transform;
                 var offset = math.log10(number) / 2f * GlyphWidth;
                 glyphTransform.Position.x += offset;

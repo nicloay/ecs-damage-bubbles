@@ -6,6 +6,6 @@ namespace Damage
     public struct DamageRequest : IComponentData
     {
         public int Value;
-        public float4 Color;
+        public int ColorId;
     }
 }

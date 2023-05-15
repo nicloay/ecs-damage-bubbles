@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.956173B0" = "override"
+	"last_search.956173B0" = "leak"
 	"OpenInspectorPreview.956173B0" = "0"
 	"currentGroup.956173B0" = "all"
 }
@@ -72,6 +72,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"lea"
 	"me"
 	"и"
 	"s"

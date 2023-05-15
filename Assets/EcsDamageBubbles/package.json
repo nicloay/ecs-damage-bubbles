@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "displayName": "Ecs Damage Bubbles",
   "description": "Damage Bubble Spawner with Animated Hit Points",
-  "unity": "2022.3",
+  "unity": "2022.2",
   "unityRelease": "0f1",
   "documentationUrl": "https://github.com/nicloay/ecs-damage-bubbles",
   "dependencies": {
