@@ -1,0 +1,23 @@
+{
+    "name": "com.nicloay.EcsDamageBubbles.Demo",
+    "rootNamespace": "",
+    "references": [
+        "com.nicloay.EcsDamageBubbles",
+        "Unity.Burst",
+        "Unity.Entities",
+        "Unity.Entities.Graphics",
+        "Unity.Mathematics",
+        "Unity.Collections",
+        "Unity.Entities.Hybrid",
+        "Unity.Transforms"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
