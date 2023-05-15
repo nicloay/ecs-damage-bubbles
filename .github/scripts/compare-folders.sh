@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+﻿#!/bin/sh
 
 # Specify the folders to compare
 FOLDER1="Assets/Demo"
