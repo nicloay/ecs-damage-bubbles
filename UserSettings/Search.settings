@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.956173B0" = "mesh"
+	"last_search.956173B0" = "leak"
 	"OpenInspectorPreview.956173B0" = "0"
 	"currentGroup.956173B0" = "all"
 }
@@ -63,10 +63,16 @@ providers = {
 		priority = 50
 		defaultAction = null
 	}
+	profilermarkers = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
 }
 objectSelectors = {
 }
 recentSearches = [
+	"lea"
 	"me"
 	"и"
 	"s"
