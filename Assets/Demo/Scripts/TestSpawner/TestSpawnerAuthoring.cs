@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace TestSpawner
+namespace EcsDamageBubbles.Demo
 {
     public class TestSpawnerAuthoring : MonoBehaviour
     {

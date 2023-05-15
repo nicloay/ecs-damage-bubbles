@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace DamageInfo
+namespace EcsDamageBubbles.DamageBubble
 {
     public struct DamageBubble : IComponentData
     {

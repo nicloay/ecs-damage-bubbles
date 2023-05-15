@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using Unity.Rendering;
 
-namespace Config
+namespace EcsDamageBubbles.Config
 {
     [MaterialProperty("_GlyphColor")]
     internal struct GlyphColorOverride : IComponentData

@@ -1,14 +1,11 @@
-﻿using System.Linq;
-using Config;
-using Damage;
-using DamageInfo;
+﻿using EcsDamageBubbles.Config;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace DamageProxySystem
+namespace EcsDamageBubbles
 {
     /// <summary>
     ///     Replace DamageRequest tag with DamageBubble text
@@ -16,7 +13,7 @@ namespace DamageProxySystem
     public partial struct DamageBubbleSpawnSystem : ISystem
     {
         private NativeArray<float4> _colorConfig;
-        
+
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
@@ -37,14 +34,11 @@ namespace DamageProxySystem
             {
                 var damageColorConfig = SystemAPI.GetSingletonBuffer<DamageBubbleColorConfig>(true);
                 _colorConfig = new NativeArray<float4>(damageColorConfig.Length, Allocator.Persistent);
-                for (int i = 0; i < _colorConfig.Length; i++)
-                {
-                    _colorConfig[i] = damageColorConfig[i].Color;
-                }
+                for (var i = 0; i < _colorConfig.Length; i++) _colorConfig[i] = damageColorConfig[i].Color;
             }
 
             var config = SystemAPI.GetSingleton<DamageBubblesConfig>();
-            
+
             var elapsedTime = (float)SystemAPI.Time.ElapsedTime;
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
 
@@ -61,7 +55,7 @@ namespace DamageProxySystem
 
 
         [BurstCompile]
-        [WithNone(typeof(DamageBubble))]
+        [WithNone(typeof(DamageBubble.DamageBubble))]
         public partial struct ApplyGlyphsJob : IJobEntity
         {
             public EntityCommandBuffer.ParallelWriter Ecb;
@@ -91,8 +85,9 @@ namespace DamageProxySystem
                     glyphTransform.Position.x -= GlyphWidth;
                     glyphTransform.Position.z -= GlyphZOffset;
                     Ecb.AddComponent(chunkIndex, glyph,
-                        new DamageBubble { SpawnTime = ElapsedTime, OriginalY = glyphTransform.Position.y });
-                    
+                        new DamageBubble.DamageBubble
+                            { SpawnTime = ElapsedTime, OriginalY = glyphTransform.Position.y });
+
                     Ecb.AddComponent(chunkIndex, glyph, new GlyphIdFloatOverride { Value = digit });
                     Ecb.SetComponent(chunkIndex, glyph, new GlyphColorOverride { Color = color });
                 }

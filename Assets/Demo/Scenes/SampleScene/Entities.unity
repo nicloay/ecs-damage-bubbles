@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPosition: {x: -5, y: 0, z: -5}
   maxPosition: {x: 5, y: 0, z: 5}
-  entitiesPerFrame: -135
+  entitiesPerFrame: 6
 --- !u!4 &1543248849
 Transform:
   m_ObjectHideFlags: 0

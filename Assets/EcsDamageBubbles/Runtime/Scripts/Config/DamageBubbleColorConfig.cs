@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Config
+namespace EcsDamageBubbles.Config
 {
     public struct DamageBubbleColorConfig : IBufferElementData
     {

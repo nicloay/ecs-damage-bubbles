@@ -1,6 +1,6 @@
 {
     "name": "com.nicloay.EcsDamageBubbles.Demo",
-    "rootNamespace": "",
+    "rootNamespace": "EcsDamageBubbles.Demo",
     "references": [
         "com.nicloay.EcsDamageBubbles",
         "Unity.Burst",

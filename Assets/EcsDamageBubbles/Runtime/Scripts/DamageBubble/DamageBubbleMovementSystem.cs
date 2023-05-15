@@ -1,11 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Config;
-using DamageProxySystem;
+using EcsDamageBubbles.Config;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
-namespace DamageInfo
+namespace EcsDamageBubbles.DamageBubble
 {
     [UpdateAfter(typeof(DamageBubbleSpawnSystem))]
     public partial struct DamageBubbleMovementSystem : ISystem
