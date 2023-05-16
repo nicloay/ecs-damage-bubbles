@@ -2,7 +2,7 @@
 
 namespace EcsDamageBubbles
 {
-    public struct DamageRequest : IComponentData
+    public struct DamageBubbleRequest : IComponentData
     {
         public int Value;
         public int ColorId;

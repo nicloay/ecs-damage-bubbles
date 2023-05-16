@@ -34,7 +34,7 @@ namespace EcsDamageBubbles.Demo
                     }
                     
                     var entity = ecb.CreateEntity();
-                    ecb.AddComponent(entity, new DamageRequest
+                    ecb.AddComponent(entity, new DamageBubbleRequest
                     {
                         Value = _rnd.NextInt(1, 999999),
                         ColorId = colorId
