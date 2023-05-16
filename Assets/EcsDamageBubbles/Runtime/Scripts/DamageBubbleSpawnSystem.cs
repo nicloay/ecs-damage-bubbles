@@ -66,10 +66,10 @@ namespace EcsDamageBubbles
             [ReadOnly] public NativeArray<float4> ColorConfig;
 
             public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in LocalTransform transform,
-                in DamageRequest damageRequest)
+                in DamageBubbleRequest damageBubbleRequest)
             {
-                var number = damageRequest.Value;
-                var color = ColorConfig[damageRequest.ColorId];
+                var number = damageBubbleRequest.Value;
+                var color = ColorConfig[damageBubbleRequest.ColorId];
                 var glyphTransform = transform;
                 var offset = math.log10(number) / 2f * GlyphWidth;
                 glyphTransform.Position.x += offset;
