@@ -7,7 +7,7 @@
   "unityRelease": "0f1",
   "documentationUrl": "https://github.com/nicloay/ecs-damage-bubbles",
   "dependencies": {
-    "com.unity.entities.graphics": "1.0.8"
+    "com.unity.entities.graphics": "1.0.9"
   },
   "keywords": [
     "Entities",
