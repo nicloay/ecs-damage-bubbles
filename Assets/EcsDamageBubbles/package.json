@@ -1,13 +1,13 @@
 ﻿{
   "name": "com.nicloay.ecsdamagebubbles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Ecs Damage Bubbles",
   "description": "Damage Bubble Spawner with Animated Hit Points",
   "unity": "2022.2",
   "unityRelease": "0f1",
   "documentationUrl": "https://github.com/nicloay/ecs-damage-bubbles",
   "dependencies": {
-    "com.unity.entities.graphics": "1.0.9"
+    "com.unity.entities.graphics": "1.0.11"
   },
   "keywords": [
     "Entities",
